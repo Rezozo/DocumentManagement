@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace documentManagement.provider
 {
-    internal class DealProvider
+    public class DealProvider
     {
         private NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=Document;User Id=postgres;Password=0987");
 

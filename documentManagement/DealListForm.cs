@@ -2,6 +2,7 @@
 using documentManagement.provider;
 using MaterialSkin.Controls;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace documentManagement
 {
@@ -55,6 +56,17 @@ namespace documentManagement
             physForm.LoginLabelText = LoginLabel.Text;
             physForm.FormClosed += (s, args) => Close();
             physForm.Show();
+        }
+
+        private void dealGridView_SelectionChanged(object sender, System.EventArgs e)
+        {
+            if (dealGridView.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dealGridView.SelectedRows[0];
+                GenerateFile generateFile = new GenerateFile();
+                generateFile.deal = (Deal)row.Tag;
+                generateFile.Show();
+            }
         }
     }
 }

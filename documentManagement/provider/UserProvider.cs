@@ -3,7 +3,7 @@ using System;
 
 namespace documentManagement.provider
 {
-    internal class UserProvider
+    public class UserProvider
     {
         private NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=Document;User Id=postgres;Password=0987");
 
@@ -103,7 +103,7 @@ namespace documentManagement.provider
             return true;
         }
 
-        internal void resetPassword(string password, string login)
+        public void resetPassword(string password, string login)
         {
             connection.Open();
             var command = new NpgsqlCommand("Update users SET password=@password WHERE login=@login", connection);

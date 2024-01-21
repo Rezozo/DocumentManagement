@@ -137,7 +137,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label2.Location = new System.Drawing.Point(29, 148);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1459, 25);
+            this.label2.Size = new System.Drawing.Size(1167, 20);
             this.label2.TabIndex = 30;
             this.label2.Text = "Выберите нужную строку, чтобы начать создание договора, нажав на пустое пространс" +
     "тво в списке, левее фамилии физического лица\r\n";
@@ -210,7 +210,7 @@
             // PhoneNumber
             // 
             this.PhoneNumber.HeaderText = "Номер телефона";
-            this.PhoneNumber.MaxInputLength = 18;
+            this.PhoneNumber.MaxInputLength = 11;
             this.PhoneNumber.MinimumWidth = 6;
             this.PhoneNumber.Name = "PhoneNumber";
             this.PhoneNumber.Width = 125;

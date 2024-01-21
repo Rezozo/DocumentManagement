@@ -73,24 +73,67 @@ namespace documentManagement
                         }
                     }
 
-                    EducationProgram educationProgram = new EducationProgram(0, row.Cells["Title"].Value.ToString(), row.Cells["Qualification"].Value.ToString(),
-                        decimal.Parse(row.Cells["Cost"].Value.ToString()), row.Cells["Period"].Value.ToString());
+                    string cost = row.Cells["Cost"].Value.ToString();
+                    string title = row.Cells["Title"].Value.ToString();
+
+                    if (!isValidData(cost, title))
+                    {
+                        return;
+                    }
+
+                    EducationProgram educationProgram = new EducationProgram(0, title, row.Cells["Qualification"].Value.ToString(),
+                        decimal.Parse(cost), row.Cells["Period"].Value.ToString());
 
                     educationProvider.insertProgram(educationProgram);
                     UpdatePrograms();
                 }
                 else
                 {
-                    EducationProgram educationProgram = new EducationProgram((int)row.Cells["Id"].Value, row.Cells["Title"].Value.ToString(), row.Cells["Qualification"].Value.ToString(),
-                        decimal.Parse(row.Cells["Cost"].Value.ToString()), row.Cells["Period"].Value.ToString());
+                    DataGridViewCell cell = row.Cells[e.ColumnIndex];
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                    {
+                        UpdatePrograms();
+                        MessageBox.Show("Значение не может быть пустым");
+                        return;
+                    }
+                    string cost = row.Cells["Cost"].Value.ToString();
+                    string title = row.Cells["Title"].Value.ToString();
+                    if (!isValidData(cost, title))
+                    {
+                        UpdatePrograms();
+                        return;
+                    }
+
+                    EducationProgram educationProgram = new EducationProgram((int)row.Cells["Id"].Value, title, row.Cells["Qualification"].Value.ToString(),
+                        decimal.Parse(cost), row.Cells["Period"].Value.ToString());
                     educationProvider.updateProgram(educationProgram);
                     UpdatePrograms();
                 }
             }
             catch
             {
-                MessageBox.Show("Неверно указаны данные, проверьте их еще раз");
+                MessageBox.Show("Зафиксируйте сохранение данных, нажатием кнопки 'Enter'!");
             }
+        }
+
+        private bool isValidData(string cost, string title)
+        {
+            try
+            {
+                decimal.Parse(cost);
+            } catch
+            {
+                MessageBox.Show("Стоимостью является число, с двумя знаками после запятой");
+                return false;
+            }
+
+            if (!educationProvider.isUniqueTitle(title))
+            {
+                MessageBox.Show("Название образовательной программы не должно повторяться");
+                return false;
+            }
+
+            return true;
         }
 
         private void dealBtn_Click(object sender, EventArgs e)

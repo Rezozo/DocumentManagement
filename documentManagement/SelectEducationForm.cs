@@ -83,21 +83,24 @@ namespace documentManagement
 
                     if (selectedFormat.Equals("PDF"))
                     {
-                        // todo pdf
+                        fileCreater.GeneratePDF(fileName, createdDeal);                    
                     } else
                     {
                         fileCreater.GenerateTXT(fileName, createdDeal);
-                        DialogResult paymentResult = MessageBox.Show("Создать квитанцию на оплату?", "Подтверждение сброса пароля", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (paymentResult == DialogResult.Yes)
-                        {
-                            // todo pdf квитанция
-                        }
-                        else
-                        {
-                            // todo pdf квитанция
-                        }
                     }
+
+                    DialogResult paymentResult = MessageBox.Show("Создать квитанцию на оплату?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (paymentResult == DialogResult.Yes)
+                    {
+                        fileCreater.GeneratePdfPaymentList(fileName, createdDeal);
+                    }
+
+                    Hide();
+                    DealListForm dealListForm = new DealListForm();
+                    dealListForm.LoginLabelText = LoginLabel.Text;
+                    dealListForm.FormClosed += (s, args) => Close();
+                    dealListForm.ShowDialog();
                 }
 
             } else

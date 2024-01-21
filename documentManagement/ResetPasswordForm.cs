@@ -12,6 +12,9 @@ namespace documentManagement
         {
             InitializeComponent();
             userProvider = new UserProvider();
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(infoLbl, "Требования к паролю: 5 букв,3 цифры " +
+                 "и один или больше знаков «@#%)(.<»");
         }
 
         public string LoginLabelText
@@ -24,9 +27,13 @@ namespace documentManagement
         {
             if (PasswordTxtB.Text != string.Empty 
                 && PasswordTxtB2.Text != string.Empty 
-                && PasswordTxtB.Text == PasswordTxtB2.Text
                 && isValidPassword(PasswordTxtB.Text))
             {
+                if (PasswordTxtB.Text != PasswordTxtB2.Text)
+                {
+                    MessageBox.Show("Пароли не совпадают");
+                    return;
+                }
                 userProvider.resetPassword(PasswordTxtB.Text, LoginLabel.Text);
                 Hide();
                 AuthForm auth = new AuthForm();

@@ -80,7 +80,6 @@ namespace documentManagement
 
                     if (!isValidData(passportData, phoneNumber, dateOfBirth, email))
                     {
-                        UpdateFaces();
                         return;
                     }
 
@@ -93,6 +92,14 @@ namespace documentManagement
                     UpdateFaces();
                 } else
                 {
+                    DataGridViewCell cell = row.Cells[e.ColumnIndex];
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                    {
+                        UpdateFaces();
+                        MessageBox.Show("Значение не может быть пустым");
+                        return;
+                    }
+
                     string passportData = row.Cells["PassportData"].Value.ToString();
                     string dateOfBirth = row.Cells["DateOfBirth"].Value.ToString();
                     string phoneNumber = row.Cells["PhoneNumber"].Value.ToString();
@@ -142,9 +149,9 @@ namespace documentManagement
                 return false;
             }
 
-            if (phoneNumber.Count(char.IsDigit) != phoneNumber.Length)
+            if (phoneNumber.Count(char.IsDigit) != 11)
             {
-                MessageBox.Show("Номер телефона должен состоять только из цифр");
+                MessageBox.Show("Номер телефона должен состоять только из 11 цифр");
                 return false;
             }
 

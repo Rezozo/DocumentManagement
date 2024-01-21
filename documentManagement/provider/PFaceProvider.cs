@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace documentManagement.provider
 {
-    internal class PFaceProvider
+    public class PFaceProvider
     {
         private NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=Document;User Id=postgres;Password=0987");
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace documentManagement.provider
 {
-    internal class EducationProvider
+    public class EducationProvider
     {
         private NpgsqlConnection connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=Document;User Id=postgres;Password=0987");
 
@@ -29,6 +29,18 @@ namespace documentManagement.provider
             reader.Close();
             connection.Close();
             return educationPrograms;
+        }
+
+        public bool isUniqueTitle(string title)
+        {
+            connection.Open();
+            var command = new NpgsqlCommand("Select COUNT(1) from education_program where title=@title", connection);
+            command.Parameters.AddWithValue("title", title);
+
+            long countRow = (long)command.ExecuteScalar();
+            connection.Close();
+            if (countRow == 0) { return true; }
+            return false;
         }
 
         public void insertProgram(EducationProgram program)

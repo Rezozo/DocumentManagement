@@ -26,6 +26,7 @@ namespace documentManagement
             if (fileNameTxt.Text != string.Empty)
             {
                 SelectedFormat = "PDF";
+                FileName = fileNameTxt.Text;
                 DialogResult = DialogResult.OK;
                 Close();
             } else

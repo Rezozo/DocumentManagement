@@ -55,7 +55,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label2.Location = new System.Drawing.Point(36, 156);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1361, 25);
+            this.label2.Size = new System.Drawing.Size(1089, 20);
             this.label2.TabIndex = 35;
             this.label2.Text = "Чтобы создать квитанцию или печатную форму договора,  нажмите на пустое пространс" +
     "тво в списке, левее номера договора\r\n";
@@ -138,6 +138,7 @@
             this.dealGridView.RowTemplate.Height = 24;
             this.dealGridView.Size = new System.Drawing.Size(1319, 376);
             this.dealGridView.TabIndex = 36;
+            this.dealGridView.SelectionChanged += new System.EventHandler(this.dealGridView_SelectionChanged);
             // 
             // Id
             // 

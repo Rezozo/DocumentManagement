@@ -1,6 +1,5 @@
 ﻿using documentManagement.provider;
 using MaterialSkin.Controls;
-using Npgsql;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,6 +14,9 @@ namespace documentManagement
             InitializeComponent();
             usersProvider = new UserProvider();
             comboBoxRole.SelectedIndex = 0;
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(infoLbl, "Требования к паролю: 5 букв,3 цифры " +
+                 "и один или больше знаков «@#%)(.<»");
         }
 
         private void backBtn_Click(object sender, EventArgs e)
