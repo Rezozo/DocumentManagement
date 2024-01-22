@@ -92,6 +92,8 @@
             this.fileNameTxt.Size = new System.Drawing.Size(327, 39);
             this.fileNameTxt.TabIndex = 42;
             this.fileNameTxt.Text = "Введите название файла";
+            this.fileNameTxt.Enter += new System.EventHandler(this.fileNameTxt_Enter);
+            this.fileNameTxt.Leave += new System.EventHandler(this.fileNameTxt_Leave);
             // 
             // GenerateFile
             // 

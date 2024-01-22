@@ -64,8 +64,8 @@ namespace documentManagement.files
         public void GeneratePDF(string fileName, Deal deal)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = fileName;
-            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt";
+            saveFileDialog.FileName = fileName + ".pdf";
+            saveFileDialog.Filter = "Все файлы (*.*)|*.*";
 
             string filePath;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -123,8 +123,8 @@ namespace documentManagement.files
         public void GeneratePdfPaymentList(string fileName, Deal deal)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = fileName;
-            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt";
+            saveFileDialog.FileName = fileName + "-payment.pdf";
+            saveFileDialog.Filter = "Все файлы (*.*)|*.*";
 
             string filePath;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)

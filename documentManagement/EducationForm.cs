@@ -98,10 +98,21 @@ namespace documentManagement
                     }
                     string cost = row.Cells["Cost"].Value.ToString();
                     string title = row.Cells["Title"].Value.ToString();
-                    if (!isValidData(cost, title))
+
+                    if (cell.Value.Equals(title))
                     {
-                        UpdatePrograms();
-                        return;
+                        if (!isValidData(cost, title))
+                        {
+                            UpdatePrograms();
+                            return;
+                        }
+                    } else
+                    {
+                        if (!isValidCost(cost))
+                        {
+                            UpdatePrograms();
+                            return;
+                        }
                     }
 
                     EducationProgram educationProgram = new EducationProgram((int)row.Cells["Id"].Value, title, row.Cells["Qualification"].Value.ToString(),
@@ -118,12 +129,8 @@ namespace documentManagement
 
         private bool isValidData(string cost, string title)
         {
-            try
+            if (!isValidCost(cost))
             {
-                decimal.Parse(cost);
-            } catch
-            {
-                MessageBox.Show("Стоимостью является число, с двумя знаками после запятой");
                 return false;
             }
 
@@ -134,6 +141,20 @@ namespace documentManagement
             }
 
             return true;
+        }
+
+        private bool isValidCost(string cost)
+        {
+            try
+            {
+                decimal.Parse(cost);
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Стоимостью является число, с двумя знаками после запятой");
+                return false;
+            }
         }
 
         private void dealBtn_Click(object sender, EventArgs e)

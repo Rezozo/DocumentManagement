@@ -2,6 +2,7 @@
 using documentManagement.models;
 using MaterialSkin.Controls;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace documentManagement
@@ -53,6 +54,24 @@ namespace documentManagement
             else
             {
                 MessageBox.Show("Укажите название файла");
+            }
+        }
+
+        private void fileNameTxt_Enter(object sender, EventArgs e)
+        {
+            if (fileNameTxt.Text == "Введите название файла")
+            {
+                fileNameTxt.Clear();
+                fileNameTxt.ForeColor = Color.Black;
+            }
+        }
+
+        private void fileNameTxt_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(fileNameTxt.Text))
+            {
+                fileNameTxt.Text = "Введите название файла";
+                fileNameTxt.ForeColor = Color.Gray;
             }
         }
     }

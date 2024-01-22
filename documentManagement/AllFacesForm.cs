@@ -168,17 +168,24 @@ namespace documentManagement
         {
             if (facesGridView.SelectedRows.Count > 0)
             {
-                DataGridViewRow row = facesGridView.SelectedRows[0];
+                try
+                {
+                    DataGridViewRow row = facesGridView.SelectedRows[0];
 
-                Hide();
-                SelectEducationForm selectEducation = new SelectEducationForm();
-                selectEducation.LoginLabelText = LoginLabel.Text;
-                selectEducation.physFace = new PFace((int)row.Cells["Id"].Value, row.Cells["LastName"].Value.ToString(), row.Cells["FirstName"].Value.ToString(),
-                        (string)row.Cells["MiddleName"].Value, DateTime.Parse(row.Cells["DateOfBirth"].Value.ToString()), row.Cells["PassportData"].Value.ToString(),
-                        row.Cells["Address"].Value.ToString(), row.Cells["Email"].Value.ToString(), row.Cells["PhoneNumber"].Value.ToString(),
-                        row.Cells["Position"].Value.ToString(), row.Cells["WorkPlace"].Value.ToString());
-                selectEducation.FormClosed += (s, args) => Close();
-                selectEducation.Show();
+                    Hide();
+                    SelectEducationForm selectEducation = new SelectEducationForm();
+                    selectEducation.LoginLabelText = LoginLabel.Text;
+                    selectEducation.physFace = new PFace((int)row.Cells["Id"].Value, row.Cells["LastName"].Value.ToString(), row.Cells["FirstName"].Value.ToString(),
+                            (string)row.Cells["MiddleName"].Value, DateTime.Parse(row.Cells["DateOfBirth"].Value.ToString()), row.Cells["PassportData"].Value.ToString(),
+                            row.Cells["Address"].Value.ToString(), row.Cells["Email"].Value.ToString(), row.Cells["PhoneNumber"].Value.ToString(),
+                            row.Cells["Position"].Value.ToString(), row.Cells["WorkPlace"].Value.ToString());
+                    selectEducation.FormClosed += (s, args) => Close();
+                    selectEducation.Show();
+                }
+                catch
+                {
+                    MessageBox.Show("Выберите не пустую строку!");
+                }
             }
         }
 

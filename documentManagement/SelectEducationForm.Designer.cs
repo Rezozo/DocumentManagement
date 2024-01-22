@@ -45,6 +45,7 @@
             // 
             // educationGridView
             // 
+            this.educationGridView.AllowUserToAddRows = false;
             this.educationGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.educationGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.educationGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -150,7 +151,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label2.Location = new System.Drawing.Point(44, 144);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1546, 25);
+            this.label2.Size = new System.Drawing.Size(1237, 20);
             this.label2.TabIndex = 40;
             this.label2.Text = "Выберите образовательны курсы (удерживайте ctrl и нажимайте на пустое пространств" +
     "о слева от номера, чтобы выбрать несколько программ)";
